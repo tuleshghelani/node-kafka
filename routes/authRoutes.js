@@ -1,7 +1,7 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
-const { register, login } = require('../controllers/authController');
+const { register, login, consumeKafkaMessage } = require('../controllers/authController');
 
 // Validation middleware
 const validateRegistration = [
@@ -20,5 +20,6 @@ router.post('/login', validateLogin, login);
 router.get('/hello', (req, res) => {
   res.send('Hello World');
 });
+router.get('/consume-kafka', consumeKafkaMessage);
 
 module.exports = router;
